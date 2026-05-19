@@ -182,3 +182,86 @@ RSI_OVERBOUGHT = 70
 MACD_FAST = 12
 MACD_SLOW = 26
 MACD_SIGNAL = 9
+
+# ========== 策略档案（用户可选） ==========
+STRATEGY_PROFILES = {
+    "aggressive": {
+        "name": "激进型",
+        "desc": "动量主导，高仓位宽止损，牛市利器",
+        "position_size": 0.25,
+        "stop_loss": -0.10,
+        "take_profit": 0.35,
+        "max_positions": 4,
+        "weights": {"momentum": 3, "rsi": 1, "ma": 1},
+        "market_filter": False,
+        "min_score": 1,
+    },
+    "balanced": {
+        "name": "均衡型",
+        "desc": "三策略等权，中等仓位，适合大多数市况",
+        "position_size": 0.20,
+        "stop_loss": -0.08,
+        "take_profit": 0.25,
+        "max_positions": 5,
+        "weights": {"momentum": 1, "rsi": 1, "ma": 1},
+        "market_filter": False,
+        "min_score": 2,
+    },
+    "conservative": {
+        "name": "保守型",
+        "desc": "RSI主导，低仓位紧止损，熊市防守",
+        "position_size": 0.15,
+        "stop_loss": -0.05,
+        "take_profit": 0.15,
+        "max_positions": 6,
+        "weights": {"momentum": 0, "rsi": 2, "ma": 1},
+        "market_filter": True,
+        "min_score": 2,
+    },
+    "trend_only": {
+        "name": "纯趋势",
+        "desc": "仅看均线金叉死叉，简洁明了",
+        "position_size": 0.20,
+        "stop_loss": -0.08,
+        "take_profit": 0.25,
+        "max_positions": 5,
+        "weights": {"momentum": 0, "rsi": 0, "ma": 3},
+        "market_filter": False,
+        "min_score": 1,
+    },
+    "contrarian": {
+        "name": "逆向型",
+        "desc": "RSI超卖抄底，反向动量，震荡市用",
+        "position_size": 0.15,
+        "stop_loss": -0.06,
+        "take_profit": 0.20,
+        "max_positions": 5,
+        "weights": {"momentum": -1, "rsi": 2, "ma": 1},
+        "market_filter": False,
+        "min_score": 1,
+    },
+}
+
+import json
+from pathlib import Path
+
+PROFILE_FILE = Path(__file__).parent.parent / "strategy_profile.json"
+
+def load_strategy_profile() -> dict:
+    """加载当前策略档案，不存在则用默认均衡型"""
+    if PROFILE_FILE.exists():
+        with open(PROFILE_FILE) as f:
+            data = json.load(f)
+        key = data.get("profile", "balanced")
+    else:
+        key = "balanced"
+    profile = STRATEGY_PROFILES.get(key, STRATEGY_PROFILES["balanced"])
+    profile["key"] = key
+    return profile
+
+def save_strategy_profile(key: str):
+    """切换策略档案"""
+    if key not in STRATEGY_PROFILES:
+        raise ValueError(f"未知策略: {key}，可选: {list(STRATEGY_PROFILES.keys())}")
+    with open(PROFILE_FILE, "w") as f:
+        json.dump({"profile": key}, f, indent=2)
