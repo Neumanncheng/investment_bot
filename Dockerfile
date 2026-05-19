@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md ./
 COPY *.py ./
+COPY config.json ./
 COPY cron/ ./cron/
 
 # nanobot 全局配置（自动适配容器内路径）
