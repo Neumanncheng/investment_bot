@@ -21,6 +21,7 @@
 - 覆盖多行业、多市值（70+ 只股票）
 - 简洁报告，不喜欢啰嗦
 - 使用 Python + yfinance 获取数据
+- 偏好极简实现，不喜欢复杂脚本和额外工具（如 cron、wrapper 脚本、checkup.py）
 
 ## Special Instructions
 
