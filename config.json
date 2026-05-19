@@ -1,0 +1,59 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/neumann/nanobot/workspace/ai-investor-agent",
+      "model": "deepseek-v4-pro",
+      "provider": "deepseek",
+      "maxToolIterations": 40,
+      "timezone": "Asia/Hong_Kong",
+      "maxTokens": 8192,
+      "contextWindowTokens": 65536
+    }
+  },
+   "providers": {
+     "deepseek": {
+       "apiKey": "${DEEPSEEK_API_KEY}",
+       "apiBase": "https://api.deepseek.com",
+       "extraHeaders": null,
+       "extraBody": null
+     }
+   },
+   "channels": {
+     "sendProgress": true,
+     "sendToolHints": false,
+     "showReasoning": true,
+     "sendMaxRetries": 3,
+     "discord": {
+       "enabled": true,
+       "token": "${AI_INVESTOR_DISCORD_TOKEN}",
+       "allowFrom": ["766572674167996426"],
+       "allowChannels": [],
+       "intents": 37377,
+       "groupPolicy": "mention",
+       "readReceiptEmoji": "👀",
+       "workingEmoji": "🔧",
+       "workingEmojiDelay": 2.0,
+       "streaming": true
+     },
+      "telegram": {
+        "enabled": false,
+        "token": "",
+        "allowFrom": [],
+        "groupPolicy": "mention",
+        "reactEmoji": "👀",
+        "replyToMessage": false,
+        "streaming": true
+      }
+   },
+   "tools": {
+    "restrictToWorkspace": true,
+    "exec": {
+      "enable": true,
+      "denyPatterns": ["/home/neumann/nanobot/*"],
+      "timeout": 120
+    },
+    "web": {
+      "enable": true
+    }
+  }
+}

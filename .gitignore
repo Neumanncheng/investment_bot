@@ -1,0 +1,31 @@
+# ── 环境变量（含 API key，绝对不能提交）──
+.env
+
+# ── 运行时数据 ──
+trades.jsonl
+portfolio_state.json
+latest_signals.json
+memory/MEMORY.md
+memory/history.jsonl
+memory/.cursor
+
+# ── 会话日志（含聊天记录）──
+sessions/
+
+# ── cron 运行记录 ──
+cron/action.jsonl
+
+# ── Discord 附件 ──
+media/
+
+# ── Docker 持久化数据 ──
+nanobot-data/
+
+# ── Python ──
+__pycache__/
+*.pyc
+*.pyo
+
+# ── 系统文件 ──
+.DS_Store
+Thumbs.db

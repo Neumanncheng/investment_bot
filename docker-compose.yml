@@ -1,0 +1,24 @@
+services:
+  ai-investor:
+    build: .
+    container_name: ai-investor-agent
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18790:18790"
+    environment:
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - AI_INVESTOR_DISCORD_TOKEN=${AI_INVESTOR_DISCORD_TOKEN}
+    volumes:
+      # 持久化 memory + 交易日志（容器重建不丢数据）
+      - ./nanobot-data/memory:/root/.nanobot/workspace/memory
+      - ./nanobot-data/sessions:/root/.nanobot/workspace/sessions
+      - ./nanobot-data/trades.jsonl:/root/.nanobot/workspace/trades.jsonl
+      - ./nanobot-data/portfolio_state.json:/root/.nanobot/workspace/portfolio_state.json
+      - ./nanobot-data/latest_signals.json:/root/.nanobot/workspace/latest_signals.json
+      # cron 运行记录
+      - ./nanobot-data/cron:/root/.nanobot/workspace/cron
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
