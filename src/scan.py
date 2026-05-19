@@ -1,7 +1,7 @@
 """多策略信号扫描"""
-from data_fetcher import fetch_stock_data
-from strategy import create_strategy, Signal
-from config import DEFAULT_SYMBOLS
+from src.data_fetcher import fetch_stock_data
+from src.strategy import create_strategy, Signal
+from src.config import DEFAULT_SYMBOLS
 
 
 def run_scan(symbols=None):

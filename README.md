@@ -76,13 +76,13 @@ nanobot gateway
 
 ```
 investment_bot/
-├── live.py              # 每日扫描入口
-├── scan.py              # 单策略信号扫描
-├── backtest.py          # 历史回测引擎
-├── strategy.py          # 策略逻辑（动量/RSI/MA）
-├── portfolio.py         # 组合与仓位管理
-├── data_fetcher.py      # yfinance 数据获取
-├── config.py            # 策略参数配置
+├── src/live.py         # 每日扫描入口
+├── src/scan.py         # 单策略信号扫描
+├── src/backtest.py     # 历史回测引擎
+├── src/strategy.py     # 策略逻辑（动量/RSI/MA）
+├── src/portfolio.py    # 组合与仓位管理
+├── src/data_fetcher.py # yfinance 数据获取
+├── src/config.py       # 策略参数配置
 ├── config.json          # nanobot 全局配置
 ├── AGENTS.md            # Agent 行为指令
 ├── SOUL.md              # 交易理念

@@ -14,7 +14,7 @@
       },
       "payload": {
         "kind": "agent_turn",
-        "message": "执行每日港股扫描任务：\n1. 运行 python3 live.py 获取技术信号\n2. 对评分前5的股票用 web_search 搜索相关新闻\n3. 交叉验证技术信号+新闻，做出买卖决策\n4. 更新 trades.jsonl 和 portfolio_state.json\n5. 将扫描报告+交易决策发送到 Discord 频道 766572939997872178",
+        "message": "执行每日港股扫描任务：\n1. 运行 python3 -m src.live 获取技术信号\n2. 对评分前5的股票用 web_search 搜索相关新闻\n3. 交叉验证技术信号+新闻，做出买卖决策\n4. 更新 trades.jsonl 和 portfolio_state.json\n5. 将扫描报告+交易决策发送到 Discord 频道 766572939997872178",
         "deliver": true,
         "channel": "cli",
         "to": "direct",
@@ -55,14 +55,14 @@
         "sessionKey": null
       },
       "state": {
-        "nextRunAtMs": 1779189294644,
+        "nextRunAtMs": 1779204906279,
         "lastRunAtMs": null,
         "lastStatus": null,
         "lastError": null,
         "runHistory": []
       },
-      "createdAtMs": 1779182094633,
-      "updatedAtMs": 1779182094633,
+      "createdAtMs": 1779197706265,
+      "updatedAtMs": 1779197706265,
       "deleteAfterRun": false
     }
   ]

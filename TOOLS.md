@@ -5,13 +5,13 @@
 - `timeout: 120` — yfinance 取数据可能较慢，给充足时间
 - `denyPatterns: ["/home/neumann/nanobot/*"]` — 禁止修改 nanobot 源码
 - 主要脚本：
-  - `live.py` — 每日技术扫描 + 多策略打分
-  - `scan.py` — 单一策略信号扫描
-  - `backtest.py` — 历史回测
-  - `data_fetcher.py` — yfinance 数据获取
-  - `strategy.py` — 策略逻辑（动量/RSI/MA）
-  - `portfolio.py` — 组合管理
-  - `config.py` — 配置参数
+  - `src/live.py` — 每日技术扫描 + 多策略打分
+  - `src/scan.py` — 单一策略信号扫描
+  - `src/backtest.py` — 历史回测
+  - `src/data_fetcher.py` — yfinance 数据获取
+  - `src/strategy.py` — 策略逻辑（动量/RSI/MA）
+  - `src/portfolio.py` — 组合管理
+  - `src/config.py` — 配置参数
 
 ## web_search / web_fetch — 新闻搜索
 

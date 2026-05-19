@@ -15,11 +15,11 @@ import os
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from data_fetcher import fetch_stock_data
-from strategy import create_strategy
-from backtest import run_backtest
-from portfolio import Portfolio
-from config import (
+from src.data_fetcher import fetch_stock_data
+from src.strategy import create_strategy
+from src.backtest import run_backtest
+from src.portfolio import Portfolio
+from src.config import (
     INITIAL_CAPITAL, DEFAULT_SYMBOLS, BACKTEST_PERIOD,
     MAX_POSITIONS, POSITION_SIZE, STOP_LOSS, TAKE_PROFIT, COMMISSION,
 )

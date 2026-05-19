@@ -13,7 +13,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md ./
-COPY *.py ./
+COPY src/ ./src/
 COPY config.json ./
 COPY cron/ ./cron/
 

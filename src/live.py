@@ -13,11 +13,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from config import DEFAULT_SYMBOLS, INITIAL_CAPITAL, COMMISSION
-from config import MAX_POSITIONS, POSITION_SIZE, STOP_LOSS, TAKE_PROFIT
-from data_fetcher import fetch_stock_data
-from portfolio import Portfolio, Position, Trade
-from strategy import create_strategy, Signal
+from src.config import DEFAULT_SYMBOLS, INITIAL_CAPITAL, COMMISSION
+from src.config import MAX_POSITIONS, POSITION_SIZE, STOP_LOSS, TAKE_PROFIT
+from src.data_fetcher import fetch_stock_data
+from src.portfolio import Portfolio, Position, Trade
+from src.strategy import create_strategy, Signal
 
 PORTFOLIO_FILE = Path(__file__).parent / "portfolio_state.json"
 SIGNALS_FILE = Path(__file__).parent / "latest_signals.json"

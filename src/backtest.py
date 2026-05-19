@@ -5,9 +5,9 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
-from portfolio import Portfolio
-from strategy import BaseStrategy, Signal
-from config import (
+from src.portfolio import Portfolio
+from src.strategy import BaseStrategy, Signal
+from src.config import (
     INITIAL_CAPITAL, MAX_POSITIONS, POSITION_SIZE,
     STOP_LOSS, TAKE_PROFIT, COMMISSION,
 )
