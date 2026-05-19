@@ -4,7 +4,7 @@ services:
     container_name: ai-investor-agent
     restart: unless-stopped
     ports:
-      - "127.0.0.1:18790:18790"
+      - "127.0.0.1:18791:18790"
     environment:
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
       - AI_INVESTOR_DISCORD_TOKEN=${AI_INVESTOR_DISCORD_TOKEN}
