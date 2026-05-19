@@ -1,0 +1,41 @@
+[project]
+name = "ai-investor-agent"
+version = "0.1.0"
+description = "AI-driven Hong Kong stock swing trading agent"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Neumanncheng" }]
+keywords = ["stock", "trading", "hong-kong", "quantitative"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.0",
+    "yfinance>=1.0",
+]
+
+[project.scripts]
+investment-bot = "src.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -31,3 +31,4 @@ __pycache__/
 Thumbs.db
 DEPLOY.md
 docker-config.json
+.pytest_cache/
