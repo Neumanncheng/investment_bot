@@ -26,6 +26,9 @@ dependencies = [
 [project.scripts]
 investment-bot = "src.cli:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
