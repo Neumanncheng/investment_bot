@@ -33,3 +33,4 @@ DEPLOY.md
 docker-config.json
 .pytest_cache/
 scan_schedule.json
+strategy_profile.json

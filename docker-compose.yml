@@ -15,6 +15,8 @@ services:
       - ./nanobot-data/trades.jsonl:/root/.nanobot/workspace/trades.jsonl
       - ./nanobot-data/portfolio_state.json:/root/.nanobot/workspace/portfolio_state.json
       - ./nanobot-data/latest_signals.json:/root/.nanobot/workspace/latest_signals.json
+      - ./nanobot-data/scan_schedule.json:/root/.nanobot/workspace/scan_schedule.json
+      - ./nanobot-data/strategy_profile.json:/root/.nanobot/workspace/strategy_profile.json
       # cron 运行记录
       - ./nanobot-data/cron:/root/.nanobot/workspace/cron
     logging:

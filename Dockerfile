@@ -13,9 +13,21 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md ./
+COPY pyproject.toml ./
 COPY src/ ./src/
+COPY tests/ ./tests/
 COPY config.json ./
 COPY cron/ ./cron/
+
+# 运行时生成的配置（防止 bind mount 缺文件时出错）
+RUN touch /root/.nanobot/workspace/scan_schedule.json \
+          /root/.nanobot/workspace/strategy_profile.json \
+          /root/.nanobot/workspace/trades.jsonl \
+          /root/.nanobot/workspace/portfolio_state.json \
+          /root/.nanobot/workspace/latest_signals.json
+
+# 注册 CLI 入口
+RUN pip install --no-cache-dir -e .
 
 # nanobot 全局配置（自动适配容器内路径）
 RUN sed 's|"workspace": ".*"|"workspace": "/root/.nanobot/workspace"|' config.json > /root/.nanobot/config.json

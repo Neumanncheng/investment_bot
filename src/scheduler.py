@@ -41,8 +41,8 @@ def save_schedule(schedule: dict) -> None:
     s = _default_schedule()
     s.update(schedule)
     _validate(s)
-    with open(SCHEDULE_FILE, "w") as f:
-        json.dump(s, f, indent=2)
+    with open(SCHEDULE_FILE, "w", encoding="utf-8") as f:
+        json.dump(s, f, indent=2, ensure_ascii=False)
     _sync_to_cron(s)
 
 
@@ -89,8 +89,8 @@ def _sync_to_cron(schedule: dict) -> None:
             job["schedule"]["everyMs"] = None
             break
 
-    with open(CRON_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+    with open(CRON_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 # ── 便捷 CLI ──────────────────────────────────────────────────────────
