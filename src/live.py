@@ -30,7 +30,7 @@ SIGNALS_FILE = Path(__file__).parent / "latest_signals.json"
 
 def load_portfolio() -> Portfolio:
     if PORTFOLIO_FILE.exists():
-        with open(PORTFOLIO_FILE) as f:
+        with open(PORTFOLIO_FILE, encoding="utf-8-sig") as f:
             data = json.load(f)
         p = Portfolio(data["initial_capital"], data.get("commission", COMMISSION))
         p.cash = data["cash"]
@@ -59,7 +59,7 @@ def save_portfolio(p: Portfolio):
         ],
         "last_updated": datetime.now().isoformat(),
     }
-    with open(PORTFOLIO_FILE, "w") as f:
+    with open(PORTFOLIO_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
@@ -320,7 +320,7 @@ def run_analysis(portfolio: Portfolio, verbose: bool = True):
         print("  💡 执行交易: python3 -m src.live --buy/sell <代码>")
 
     # 保存信号供 agent 读取
-    with open(SIGNALS_FILE, "w") as f:
+    with open(SIGNALS_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "date": last_date,
             "total_value": round(total_value, 2),

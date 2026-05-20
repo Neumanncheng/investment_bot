@@ -250,7 +250,7 @@ PROFILE_FILE = Path(__file__).parent.parent / "strategy_profile.json"
 def load_strategy_profile() -> dict:
     """加载当前策略档案，不存在则用默认均衡型"""
     if PROFILE_FILE.exists():
-        with open(PROFILE_FILE) as f:
+        with open(PROFILE_FILE, encoding="utf-8-sig") as f:
             data = json.load(f)
         key = data.get("profile", "balanced")
     else:
@@ -263,5 +263,5 @@ def save_strategy_profile(key: str):
     """切换策略档案"""
     if key not in STRATEGY_PROFILES:
         raise ValueError(f"未知策略: {key}，可选: {list(STRATEGY_PROFILES.keys())}")
-    with open(PROFILE_FILE, "w") as f:
+    with open(PROFILE_FILE, "w", encoding="utf-8") as f:
         json.dump({"profile": key}, f, indent=2)

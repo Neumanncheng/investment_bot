@@ -25,7 +25,7 @@ def load_schedule() -> dict:
     """加载当前扫描时间配置，不存在则返回默认值。"""
     if SCHEDULE_FILE.exists():
         try:
-            with open(SCHEDULE_FILE) as f:
+            with open(SCHEDULE_FILE, encoding="utf-8-sig") as f:
                 data = json.load(f)
             # 补齐可能缺失的键
             for k, v in _default_schedule().items():
@@ -77,7 +77,7 @@ def _sync_to_cron(schedule: dict) -> None:
     if not CRON_FILE.exists():
         return
 
-    with open(CRON_FILE) as f:
+    with open(CRON_FILE, encoding="utf-8-sig") as f:
         data = json.load(f)
 
     for job in data.get("jobs", []):
