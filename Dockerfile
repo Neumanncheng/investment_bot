@@ -22,9 +22,9 @@ COPY cron/ ./cron/
 # 运行时生成的配置（防止 bind mount 缺文件时出错）
 RUN touch /root/.nanobot/workspace/scan_schedule.json \
           /root/.nanobot/workspace/strategy_profile.json \
-          /root/.nanobot/workspace/trades.jsonl \
-          /root/.nanobot/workspace/portfolio_state.json \
-          /root/.nanobot/workspace/latest_signals.json
+          /root/.nanobot/workspace/src/trades.jsonl \
+          /root/.nanobot/workspace/src/portfolio_state.json \
+          /root/.nanobot/workspace/src/latest_signals.json
 
 # 注册 CLI 入口
 RUN pip install --no-cache-dir -e .
