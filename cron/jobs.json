@@ -3,7 +3,7 @@
   "jobs": [
     {
       "id": "32d053ee",
-      "name": "每日港股扫描",
+      "name": "\u6bcf\u65e5\u6e2f\u80a1\u626b\u63cf",
       "enabled": true,
       "schedule": {
         "kind": "cron",
@@ -14,7 +14,7 @@
       },
       "payload": {
         "kind": "agent_turn",
-        "message": "执行每日港股扫描任务：\n1. 运行 python3 -m src.live 获取技术信号\n2. 对评分前5的股票用 web_search 搜索相关新闻\n3. 交叉验证技术信号+新闻，做出买卖决策\n4. 更新 trades.jsonl 和 portfolio_state.json\n5. 将扫描报告+交易决策发送到 Discord 频道 766572939997872178",
+        "message": "\u6267\u884c\u6bcf\u65e5\u6e2f\u80a1\u626b\u63cf\u4efb\u52a1\uff1a\n1. \u8fd0\u884c python3 -m src.live \u83b7\u53d6\u6280\u672f\u4fe1\u53f7\n2. \u5bf9\u8bc4\u5206\u524d5\u7684\u80a1\u7968\u7528 web_search \u641c\u7d22\u76f8\u5173\u65b0\u95fb\n3. \u4ea4\u53c9\u9a8c\u8bc1\u6280\u672f\u4fe1\u53f7+\u65b0\u95fb\uff0c\u505a\u51fa\u4e70\u5356\u51b3\u7b56\n4. \u66f4\u65b0 trades.jsonl \u548c portfolio_state.json\n5. \u5c06\u626b\u63cf\u62a5\u544a+\u4ea4\u6613\u51b3\u7b56\u53d1\u9001\u5230 Discord \u9891\u9053 766572939997872178",
         "deliver": true,
         "channel": "cli",
         "to": "direct",
@@ -55,14 +55,33 @@
         "sessionKey": null
       },
       "state": {
-        "nextRunAtMs": 1779204906279,
-        "lastRunAtMs": null,
-        "lastStatus": null,
+        "nextRunAtMs": 1779260314070,
+        "lastRunAtMs": 1779253114069,
+        "lastStatus": "ok",
         "lastError": null,
-        "runHistory": []
+        "runHistory": [
+          {
+            "runAtMs": 1779204907909,
+            "status": "ok",
+            "durationMs": 271620,
+            "error": null
+          },
+          {
+            "runAtMs": 1779244186609,
+            "status": "ok",
+            "durationMs": 238486,
+            "error": null
+          },
+          {
+            "runAtMs": 1779253114069,
+            "status": "ok",
+            "durationMs": 1,
+            "error": null
+          }
+        ]
       },
       "createdAtMs": 1779197706265,
-      "updatedAtMs": 1779197706265,
+      "updatedAtMs": 1779253114070,
       "deleteAfterRun": false
     }
   ]

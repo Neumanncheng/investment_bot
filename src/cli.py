@@ -15,6 +15,10 @@ from src.strategy import create_strategy
 from src.backtest import run_backtest
 from src.portfolio import Portfolio
 from src.live import run_analysis as live_analysis
+from src.scheduler import (
+    load_schedule, save_schedule,
+    set_time, set_days, set_timezone, describe,
+)
 
 
 # ── helpers ──────────────────────────────────────────────────────────
@@ -149,6 +153,33 @@ def cmd_strategy(args) -> None:
         print()
 
 
+def cmd_schedule(args) -> None:
+    """View or change daily scan schedule."""
+    if args.show:
+        s = load_schedule()
+        print(f"\n  当前扫描时间: {describe(s)}")
+        return
+
+    changed = False
+    s = load_schedule()
+
+    if args.time:
+        set_time(args.time)
+        changed = True
+    if args.days:
+        set_days(args.days)
+        changed = True
+    if args.tz:
+        set_timezone(args.tz)
+        changed = True
+
+    if changed:
+        s = load_schedule()
+        print(f"✅ 扫描时间已更新: {describe(s)}")
+    else:
+        print(f"  当前扫描时间: {describe(s)}")
+
+
 # ── main ─────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -178,6 +209,14 @@ def main() -> None:
     p_st.add_argument("--set", "-s", choices=list(STRATEGY_PROFILES.keys()), help="切换到此策略")
     p_st.add_argument("--list", "-l", action="store_true", help="列出所有策略")
     p_st.set_defaults(func=cmd_strategy)
+
+    # schedule
+    p_sc = sub.add_parser("schedule", help="查看/设置每日扫描时间")
+    p_sc.add_argument("--show", action="store_true", help="显示当前扫描时间")
+    p_sc.add_argument("--time", "-t", metavar="HH:MM", help="扫描时间，如 09:30")
+    p_sc.add_argument("--days", "-d", metavar="DAYS", help="扫描日，0=日 1=一...6=六，如 1-5 或 1,3,5")
+    p_sc.add_argument("--tz", metavar="TZ", help="时区，如 Asia/Hong_Kong")
+    p_sc.set_defaults(func=cmd_schedule)
 
     args = parser.parse_args()
     if args.command is None:

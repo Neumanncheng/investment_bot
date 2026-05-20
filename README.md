@@ -50,6 +50,8 @@ investment-bot backtest -s ma        # 历史回测（-s 可选 ma/rsi/momentum�
 investment-bot strategy              # 查看当前策略
 investment-bot strategy --list       # 列出所有策略档案
 investment-bot strategy --set aggressive  # 切换到激进策略
+investment-bot schedule --show       # 查看扫描时间
+investment-bot schedule --time 09:30 # 设置扫描时间
 ```
 
 ## 策略档案
@@ -87,7 +89,19 @@ investment-bot strategy --set aggressive  # 切换到激进策略
 
 ### 扫描频率
 
-默认 HKT 每个交易日 16:30 自动扫描。通过 `HEARTBEAT.md` 或 `cron/jobs.json` 调整。
+默认 HKT 每个交易日 16:30 自动扫描。可通过以下方式自定义：
+
+```bash
+# CLI
+investment-bot schedule --time 09:30 --days 1-5
+
+# Discord
+@AI Investor 设置扫描时间 09:30
+@AI Investor 设置扫描日 1,3,5
+@AI Investor 查看扫描时间
+```
+
+配置保存在 `scan_schedule.json`，自动同步到 `cron/jobs.json`。
 
 ## 文件结构
 
@@ -101,9 +115,10 @@ investment_bot/
 │   ├── strategy.py      # 策略逻辑（动量/RSI/MA）
 │   ├── portfolio.py     # 组合与仓位管理
 │   ├── data_fetcher.py  # yfinance 数据获取
-│   └── config.py        # 全局参数 + 策略档案
+│   ├── scheduler.py     # 扫描时间配置 + cron 同步
 ├── tests/
-│   └── test_strategy.py # 策略逻辑单元测试
+│   ├── test_strategy.py # 策略逻辑单元测试
+│   └── test_scheduler.py# 扫描时间调度测试
 ├── pyproject.toml        # 项目元数据 + CLI 入口定义
 ├── config.json           # nanobot 全局配置
 ├── AGENTS.md             # Agent 行为指令

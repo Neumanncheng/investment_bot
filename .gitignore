@@ -32,3 +32,4 @@ Thumbs.db
 DEPLOY.md
 docker-config.json
 .pytest_cache/
+scan_schedule.json
