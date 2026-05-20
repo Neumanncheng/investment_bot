@@ -77,8 +77,11 @@ def _sync_to_cron(schedule: dict) -> None:
     if not CRON_FILE.exists():
         return
 
-    with open(CRON_FILE, encoding="utf-8-sig") as f:
-        data = json.load(f)
+    try:
+        with open(CRON_FILE, encoding="utf-8-sig") as f:
+            data = json.load(f)
+    except (json.JSONDecodeError, KeyError):
+        return
 
     for job in data.get("jobs", []):
         if job.get("id") == SCAN_JOB_ID:

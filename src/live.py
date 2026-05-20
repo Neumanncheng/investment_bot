@@ -30,15 +30,18 @@ SIGNALS_FILE = Path(__file__).parent / "latest_signals.json"
 
 def load_portfolio() -> Portfolio:
     if PORTFOLIO_FILE.exists():
-        with open(PORTFOLIO_FILE, encoding="utf-8-sig") as f:
-            data = json.load(f)
-        p = Portfolio(data["initial_capital"], data.get("commission", COMMISSION))
-        p.cash = data["cash"]
-        for sym, pos_data in data.get("positions", {}).items():
-            p.positions[sym] = Position(sym, pos_data["shares"], pos_data["avg_cost"])
-        for t in data.get("trades", []):
-            p.trades.append(Trade(**t))
-        return p
+        try:
+            with open(PORTFOLIO_FILE, encoding="utf-8-sig") as f:
+                data = json.load(f)
+            p = Portfolio(data["initial_capital"], data.get("commission", COMMISSION))
+            p.cash = data["cash"]
+            for sym, pos_data in data.get("positions", {}).items():
+                p.positions[sym] = Position(sym, pos_data["shares"], pos_data["avg_cost"])
+            for t in data.get("trades", []):
+                p.trades.append(Trade(**t))
+            return p
+        except (json.JSONDecodeError, KeyError, TypeError):
+            pass
     return Portfolio(INITIAL_CAPITAL, COMMISSION)
 
 
