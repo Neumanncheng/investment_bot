@@ -7,14 +7,13 @@ from pathlib import Path
 
 from src.config import (
     DEFAULT_SYMBOLS, INITIAL_CAPITAL, BACKTEST_PERIOD,
-    MAX_POSITIONS, COMMISSION,
+    MAX_POSITIONS,
     STRATEGY_PROFILES, load_strategy_profile, save_strategy_profile,
 )
 from src.data_fetcher import fetch_stock_data
 from src.strategy import create_strategy
 from src.backtest import run_backtest
-from src.portfolio import Portfolio
-from src.live import run_analysis as live_analysis
+from src.live import run_analysis as live_analysis, load_portfolio
 from src.scheduler import (
     load_schedule, save_schedule,
     set_time, set_days, set_timezone, describe,
@@ -69,11 +68,7 @@ def cmd_scan(args) -> None:
     profile = load_strategy_profile()
     print(f"  策略档案: {profile['name']} ({profile['key']})")
 
-    portfolio = Portfolio(INITIAL_CAPITAL, COMMISSION)
-    state_path = Path(__file__).parent.parent / "portfolio_state.json"
-    if state_path.exists():
-        portfolio.load(str(state_path))
-
+    portfolio = load_portfolio()
     live_analysis(portfolio, verbose=not args.quiet)
 
 
