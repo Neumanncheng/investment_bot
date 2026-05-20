@@ -12,7 +12,7 @@ services:
       # 持久化 memory + 交易日志（容器重建不丢数据）
       - ./nanobot-data/memory:/root/.nanobot/workspace/memory
       - ./nanobot-data/sessions:/root/.nanobot/workspace/sessions
-      - ./nanobot-data/trades.jsonl:/root/.nanobot/workspace/src/trades.jsonl
+      - ./nanobot-data/trades.jsonl:/root/.nanobot/workspace/trades.jsonl
       - ./nanobot-data/portfolio_state.json:/root/.nanobot/workspace/src/portfolio_state.json
       - ./nanobot-data/latest_signals.json:/root/.nanobot/workspace/src/latest_signals.json
       - ./nanobot-data/scan_schedule.json:/root/.nanobot/workspace/scan_schedule.json
