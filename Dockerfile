@@ -12,7 +12,7 @@ WORKDIR /root/.nanobot/workspace
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md ./
+COPY AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md README.md ./
 COPY pyproject.toml ./
 COPY src/ ./src/
 COPY tests/ ./tests/
